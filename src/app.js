@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express=require('express');
 const path=require('path');
 const hbs=require('hbs');
@@ -6,7 +7,7 @@ const forecast = require('./Utils/forecast');
 const app=express();
 const publicDirectoryPath = path.join(__dirname,'../public')
 const partialPath=path.join(__dirname,'../templates/partials');
-
+const port=process.env.PORT || 3000;
 app.set('views', path.join(__dirname, '../templates/views'));
 const options = {
     extensions: ['html']
@@ -66,6 +67,6 @@ app.get('*',(req,res)=>{
                         title: '404',
                     errorMessage: 'Error404: Page does not exist'})
 })
-app.listen(3000,()=>{
-    console.log("Server is fired up at port 3000")
+app.listen(port,()=>{
+    console.log("Server is fired up at port "+ port);
 })
